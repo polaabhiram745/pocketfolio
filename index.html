@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Pocketfolio: track your Indian stocks</title>
+    <meta name="theme-color" content="#3D4DFF" />
+    <meta name="description" content="Track your Indian stock portfolios and compare them with the Nifty 50." />
+
+    <!-- Makes Pocketfolio installable like a real app -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Pocketfolio" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <!-- The little face shown on the browser tab -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23FFE27A' stroke='%231B2340' stroke-width='6'/%3E%3Ccircle cx='35' cy='42' r='5' fill='%231B2340'/%3E%3Ccircle cx='65' cy='42' r='5' fill='%231B2340'/%3E%3Cpath d='M32 62 Q50 80 68 62' fill='none' stroke='%231B2340' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <!-- React puts the whole app inside this box -->
+    <div id="root"></div>
+
+    <!-- 1. React itself (loaded from the internet, nothing to install) -->
+    <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- 1b. TradingView's free chart library (draws the candlestick charts) -->
+    <script src="https://unpkg.com/lightweight-charts@4/dist/lightweight-charts.standalone.production.js"></script>
+
+    <!-- 2. Babel: lets the browser understand the HTML-like JSX in app.jsx -->
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+
+    <!-- 3. Lets browsers install Pocketfolio as an app (needs https or localhost) -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/sw.js").catch(function () {});
+        });
+      }
+    </script>
+
+    <!-- 4. Our app -->
+    <script type="text/babel" data-presets="react" src="app.jsx"></script>
+  </body>
+</html>

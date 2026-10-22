@@ -1,0 +1,2 @@
+# Pocketfolio needs no extra Python packages.
+# This file exists because hosts like Render look for it.
